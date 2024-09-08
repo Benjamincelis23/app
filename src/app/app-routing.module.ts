@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
+    loadChildren: () => import('./pages/Recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
 ];
 

@@ -32,6 +32,26 @@
  * https://ionicframework.com/docs/theming/dark-mode
  */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+/* Para asegurarnos de que el modo oscuro no afecte la aplicación */
+:root {
+  /* Forzamos el fondo claro */
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+  --ion-toolbar-background-color: #ffffff;
+  --ion-toolbar-color: #000000;
+}
+
+/* Asegurarse de que el modo oscuro no aplique los colores */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #ffffff !important;
+    --ion-text-color: #000000 !important;
+    --ion-toolbar-background-color: #ffffff !important;
+    --ion-toolbar-color: #000000 !important;
+  }
+}
+
+/* Ajustes básicos para los componentes */
+ion-content {
+  background-color: var(--ion-background-color);
+}
