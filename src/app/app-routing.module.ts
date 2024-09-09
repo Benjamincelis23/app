@@ -19,10 +19,13 @@ const routes: Routes = [
     path: 'recuperar',
     loadChildren: () => import('./pages/Recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
+<<<<<<< HEAD
   {
     path: 'registro',
     loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
   },
+=======
+>>>>>>> 598b112de26ab0e3e4f5129745c0bd4cc6682c1b
 ];
 
 @NgModule({
