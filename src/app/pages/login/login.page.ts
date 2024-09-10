@@ -13,15 +13,17 @@ export class LoginPage implements OnInit {
 
   constructor(private navCtrl: NavController) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  ValidarCredenciales() { 
+  // Método que redirige a la página de inicio
+  ValidarCredenciales() {
     console.log(this.loginUsuario);
     console.log(this.loginContrasena);
+    // Navega a la página de "inicio"
+    this.navCtrl.navigateForward('/inicio');
   }
 
-  // Nueva función para navegar a la página de registro
+  // Método que redirige a la página de registro
   navigateToRegister() {
     this.navCtrl.navigateForward('/registro');
   }

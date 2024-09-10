@@ -6,14 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./recuperar.page.scss'],
 })
 export class RecuperarPage implements OnInit {
+  usuario: string = '';  // Agregado para el campo de usuario
   correoElectronico: string = '';
   correoConfirmacion: string = '';
+  mensajeErrorUsuario: string = '';  // Agregado para el mensaje de error del usuario
   mensajeErrorCorreo: string = '';
   mensajeErrorConfirmacion: string = '';
 
   constructor() { }
 
   ngOnInit() { }
+
+  validarUsuario() {
+    if (!this.usuario) {
+      this.mensajeErrorUsuario = 'Ingrese un usuario';
+    } else {
+      this.mensajeErrorUsuario = '';
+    }
+  }
 
   validarCorreo() {
     if (!this.correoElectronico) {
@@ -34,10 +44,11 @@ export class RecuperarPage implements OnInit {
   }
 
   enviarEnlace() {
+    this.validarUsuario();  // Validar usuario antes de enviar
     this.validarCorreo();
     this.validarConfirmacion();
     
-    if (!this.mensajeErrorCorreo && !this.mensajeErrorConfirmacion) {
+    if (!this.mensajeErrorUsuario && !this.mensajeErrorCorreo && !this.mensajeErrorConfirmacion) {
       console.log('Enviando enlace de recuperación a: ', this.correoElectronico);
       // Aquí puedes agregar la lógica para enviar el enlace de recuperación
     }

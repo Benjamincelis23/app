@@ -17,11 +17,11 @@ const routes: Routes = [
   },
   {
     path: 'recuperar',
-    loadChildren: () => import('./pages/Recuperar/recuperar.module').then(m => m.RecuperarPageModule)
+    loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule) // Corregido "Recuperar" a "recuperar"
   },
   {
     path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
   },
 ];
 
