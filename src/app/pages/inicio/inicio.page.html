@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-<!-- Definición del menú lateral -->
 <ion-menu contentId="main-content">
   <ion-header>
     <ion-toolbar>
@@ -21,18 +20,26 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    Agregar más cosas.
+    <!-- Aquí puedes agregar más opciones al menú -->
+    <ion-item>
+      <ion-label>Opción 1</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Opción 2</ion-label>
+    </ion-item>
   </ion-content>
 </ion-menu>
 
-<!-- Contenido principal de la página -->
 <ion-content class="ion-padding" id="main-content">
+  <!-- Mensaje de bienvenida -->
+  <h2>Bienvenido, {{ nombreUsuario }}!</h2> <!-- Aquí se muestra el nombre del usuario -->
+  
   <ion-card>
     <img alt="doctores" src="assets/icon/images/doctores.jpg"/>
     <ion-card-header>
       <ion-card-title>¿Quieres reservar hora?</ion-card-title>
     </ion-card-header>
-    
+
     <!-- Cuadrado de color -->
     <div class="color-square"></div>
 

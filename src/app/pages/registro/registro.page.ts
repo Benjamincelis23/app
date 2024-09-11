@@ -7,8 +7,8 @@ import { NavController, LoadingController } from '@ionic/angular';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-  nombre: string = '';
-  apellido: string = '';
+  nombre: string = '';     
+  apellido: string = ''; 
   rut: string = '';
   telefono: string = '';
   email: string = '';
@@ -20,10 +20,12 @@ export class RegistroPage implements OnInit {
   ngOnInit() { }
 
   async crearCuenta() {
+    // Validar que todos los campos estén llenos
     if (!this.nombre || !this.apellido || !this.rut || !this.telefono || !this.email || !this.password) {
       return; // No hacer nada si hay campos vacíos
     }
 
+    // Mostrar indicador de carga
     this.loading = await this.loadingCtrl.create({
       message: 'Creando cuenta...',
       duration: 2000
@@ -32,7 +34,17 @@ export class RegistroPage implements OnInit {
 
     // Simular un retraso para la carga
     setTimeout(() => {
-      // Aquí puedes agregar lógica para enviar datos al servidor y manejar la respuesta
+      // Guardar los datos del usuario en localStorage
+      const usuario = {
+        nombre: this.nombre,
+        apellido: this.apellido,  // Incluyendo el apellido en los datos del usuario
+        rut: this.rut,
+        telefono: this.telefono,
+        email: this.email, // Correo electrónico como nombre de usuario
+        password: this.password
+      };
+
+      localStorage.setItem('usuarioRegistrado', JSON.stringify(usuario));
 
       this.loading?.dismiss(); // Ocultar indicador de carga
 
