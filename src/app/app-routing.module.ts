@@ -9,30 +9,16 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'registro',
-    redirectTo: 'registro',
-    pathMatch: 'full'
-  },
-  {
-    path: 'login',
-    redirectTo: 'login',
-    pathMatch: 'full'
-  },  {
-    path: 'recuperar',
-    redirectTo: 'recuperar',
-    pathMatch: 'full'
-  },  {
-    path: 'inicio',
-    redirectTo: 'inicio',
-    pathMatch: 'full'
-  },  {
-    path: '**',
-    redirectTo: 'error404',
-    pathMatch: 'full'
-  },
-  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
+  },
+  {
+    path: 'recuperar',
+    loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
   },
   {
     path: 'inicio',
@@ -40,17 +26,14 @@ const routes: Routes = [
     canActivate: [DatabaseService]
   },
   {
-    path: 'recuperar',
-    loadChildren: () => import('./pages/recuperar/recuperar.module').then(m => m.RecuperarPageModule)
-  },
-  {
-    path: 'registro',
-    loadChildren: () => import('./pages/registro/registro.module').then(m => m.RegistroPageModule)
-  },
-  {
     path: 'error404',
-    loadChildren: () => import('./pages/error404/error404.module').then( m => m.Error404PageModule)
+    loadChildren: () => import('./pages/error404/error404.module').then(m => m.Error404PageModule)
   },
+  {
+    path: '**',
+    redirectTo: 'error404',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
