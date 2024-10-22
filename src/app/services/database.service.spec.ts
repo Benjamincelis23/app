@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import { DatabaseService } from './database.service';
 import { Storage } from '@ionic/storage-angular';
 
@@ -21,11 +22,23 @@ describe('DatabaseService', () => {
 
     // Simula la inicialización del storage
     storageSpy.create.and.returnValue(Promise.resolve(spy));
+=======
+
+import { DatabaseService } from './database.service';
+
+describe('DatabaseService', () => {
+  let service: DatabaseService;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    service = TestBed.inject(DatabaseService);
+>>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('should set and get an item', async () => {
     storageSpy.set.and.returnValue(Promise.resolve());
@@ -51,4 +64,6 @@ describe('DatabaseService', () => {
     await service.clear();
     expect(storageSpy.clear).toHaveBeenCalled();
   });
+=======
+>>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
 });

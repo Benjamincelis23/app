@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+<<<<<<< HEAD
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+=======
+>>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService implements CanActivate {
+<<<<<<< HEAD
   private dbInstance: SQLiteObject | undefined;
 
   constructor(private router: Router, private sqlite: SQLite) {
@@ -93,6 +97,36 @@ export class DatabaseService implements CanActivate {
       return true;
     } else {
       this.router.navigate(['/login']);
+=======
+
+  constructor(private router: Router) {}
+
+  // Métodos de almacenamiento
+  setItem(key: string, value: any): void {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  getItem(key: string): any {
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
+  }
+
+  removeItem(key: string): void {
+    localStorage.removeItem(key);
+  }
+
+  clear(): void {
+    localStorage.clear();
+  }
+
+  // Guard para proteger rutas
+  canActivate(): boolean {
+    const usuarioRegistrado = this.getItem('usuarioRegistrado');
+    if (usuarioRegistrado) {
+      return true;  // El usuario está autenticado
+    } else {
+      this.router.navigate(['/login']);  // Redirigir al login si no está autenticado
+>>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
       return false;
     }
   }
