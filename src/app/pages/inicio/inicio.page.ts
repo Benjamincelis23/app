@@ -12,15 +12,10 @@ export class InicioPage implements OnInit {
 
   constructor(private menuCtrl: MenuController, private dbService: DatabaseService) { }
 
-<<<<<<< HEAD
   async ngOnInit() {
     // Obtener el usuario actual del localStorage
     const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual') || '{}');
-=======
-  ngOnInit() {
-    // Obtener los datos del usuario actual desde el DatabaseService
-    const usuarioActual = this.dbService.getItem('usuarioRegistrado');
->>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
+
     if (usuarioActual) {
       // Construir el nombre completo del usuario
       this.nombreUsuario = `${usuarioActual.nombre} ${usuarioActual.apellido}`;

@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-<<<<<<< HEAD
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
-=======
->>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
 
 @Injectable({
   providedIn: 'root'
 })
 export class DatabaseService implements CanActivate {
-<<<<<<< HEAD
   private dbInstance: SQLiteObject | undefined;
 
   constructor(private router: Router, private sqlite: SQLite) {
@@ -65,8 +61,10 @@ export class DatabaseService implements CanActivate {
     try {
       const res = await this.dbInstance?.executeSql(sql, []);
       const usuarios: any[] = [];
-      for (let i = 0; i < res.rows.length; i++) {
-        usuarios.push(res.rows.item(i));
+      if (res && res.rows) {
+        for (let i = 0; i < res.rows.length; i++) {
+          usuarios.push(res.rows.item(i));
+        }
       }
       return usuarios;
     } catch (error) {
@@ -80,10 +78,10 @@ export class DatabaseService implements CanActivate {
     const sql = `SELECT * FROM usuarios WHERE email = ? AND password = ?`;
     try {
       const res = await this.dbInstance?.executeSql(sql, [email, password]);
-      if (res.rows.length > 0) {
+      if (res && res.rows && res.rows.length > 0) {
         return res.rows.item(0); // Retorna el usuario encontrado
       }
-      return null;
+      return null; // No se encontró ningún usuario
     } catch (error) {
       console.error('Error al validar las credenciales del usuario:', error);
       return null;
@@ -94,39 +92,9 @@ export class DatabaseService implements CanActivate {
   async canActivate(): Promise<boolean> {
     const usuarioRegistrado = await this.getAllUsers(); // Obtener los usuarios registrados
     if (usuarioRegistrado.length > 0) {
-      return true;
+      return true; // Permitir acceso si hay usuarios registrados
     } else {
-      this.router.navigate(['/login']);
-=======
-
-  constructor(private router: Router) {}
-
-  // Métodos de almacenamiento
-  setItem(key: string, value: any): void {
-    localStorage.setItem(key, JSON.stringify(value));
-  }
-
-  getItem(key: string): any {
-    const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
-  }
-
-  removeItem(key: string): void {
-    localStorage.removeItem(key);
-  }
-
-  clear(): void {
-    localStorage.clear();
-  }
-
-  // Guard para proteger rutas
-  canActivate(): boolean {
-    const usuarioRegistrado = this.getItem('usuarioRegistrado');
-    if (usuarioRegistrado) {
-      return true;  // El usuario está autenticado
-    } else {
-      this.router.navigate(['/login']);  // Redirigir al login si no está autenticado
->>>>>>> 921f1a61ed3b6398c0876b97587b8418676c0c10
+      this.router.navigate(['/login']); // Redirigir al login si no hay usuarios
       return false;
     }
   }
